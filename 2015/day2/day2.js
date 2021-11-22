@@ -8,10 +8,7 @@ const input = fs.readFileSync("input").toString('utf-8').split('\n')
 let sum = 0
 let inc = 1
 for (let line of input) {
-  let [l, w, h] = line.split('x')
-  l = Number(l)
-  w = Number(w)
-  h = Number(h)
+  let [l, w, h] = line.split('x').map(Number)
 
   //Part 1:
   //console.log(l, w, h, Math.min(l*w,w*h,l*h))
