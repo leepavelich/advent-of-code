@@ -2,7 +2,7 @@
  *  $ npm install crypto-js
  */
 
-let MD5 = require("crypto-js/md5");
+let MD5 = require("../../node_modules/crypto-js/md5");
 
 const day4 = (leadingZeroes) => {
   const input = 'ckczppom'
