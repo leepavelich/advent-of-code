@@ -1,5 +1,5 @@
 const fs = require("fs");
-const input = fs.readFileSync("input").toString('utf-8').split('')
+const input = fs.readFileSync("input").toString('utf-8')
 
 const day3_1 = () => {
   let houses = {house0_0: 1}

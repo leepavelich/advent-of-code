@@ -1,6 +1,6 @@
 const fs = require("fs");
-const input = fs.readFileSync("input").toString('utf-8').split('')
-//console.log(input)
+const input = fs.readFileSync("input").toString('utf-8')
+// console.log(input)
 
 const day1_1 = () => {
   let floor = 0
