@@ -18,8 +18,8 @@ const day4 = (leadingZeroes) => {
     i++
   }
 
-  console.log(test);
+  return test
 }
 
-day4(5)
-day4(6)
+console.log('Hash with 5 leading zeroes: ' + day4(5))
+console.log('Hash with 6 leading zeroes: ' + day4(6))
