@@ -14,14 +14,13 @@ const day2_1 = () => {
       case 'up'     : y -= command; break
     }
   }
-
   return x * y
 }
 
 const day2_2 = () => {
   let x = 0
-  let aim = 0
   let y = 0
+  let aim = 0
 
   for (let line of input) {
     let commands = line.split(' ')
@@ -32,7 +31,6 @@ const day2_2 = () => {
       case 'up'     : aim -= command; break
     }
   }
-  
   return x * y
 }
 
