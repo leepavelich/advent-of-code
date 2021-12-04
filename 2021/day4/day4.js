@@ -14,7 +14,6 @@ const day4_1 = () => {
 
 const day4_2 = () => {
   let boards = boardPrep(boardIn).slice()
-
   for(let num of numbers) {
     boards.map(board => updater(num, board))
     for(let board of boards) {
