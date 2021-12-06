@@ -74,14 +74,18 @@ const updateMap = (map, vent, diag) => {
   return map
 }
 
-const overlap = map => {
-  let sum = 0
-  for(i = 0; i < map.length; i++) {
-    for(j = 0; j < map.length; j++) {
-      if(map[i][j] > 1) sum++
-    }
-  }
-  return sum
-}
+// naive and fast solution
+// const overlap = map => {
+//   let sum = 0
+//   for(i = 0; i < map.length; i++) {
+//     for(j = 0; j < map.length; j++) {
+//       if(map[i][j] > 1) sum++
+//     }
+//   }
+//   return sum
+// }
+
+// functional and slow solution
+const overlap = map => map.flat().filter(x => x > 1).length
 
 console.log('Part 1:', day5_1(), 'Part 2:', day5_2())
