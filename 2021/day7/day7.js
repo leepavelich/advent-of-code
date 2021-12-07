@@ -1,30 +1,20 @@
-const fs = require("fs");
+const fs = require("fs")
 const input = fs.readFileSync('input', 'utf-8').split(',').map(x => parseInt(x))
 
-const day7_1 = () => {
-  let low  = Math.min(...input)
-  let high = Math.max(...input)
+const day7 = func => {
+  let min = Math.min(...input)
+  let max = Math.max(...input)
 
-  let lowestFuel = Infinity
-  for(let i = low; i <= high; i++) {
-    let fuel = input.reduce((a,b) => a + Math.abs(b - i), 0)
-    if(fuel < lowestFuel) lowestFuel = fuel
-  }
-  return lowestFuel
+  let fuel = []
+  for(let i of range(min,max)) fuel.push(input.reduce((a,b) => a + func(b - i), 0))
+  return Math.min(...fuel)
 }
 
-const day7_2 = () => {
-  let low  = Math.min(...input)
-  let high = Math.max(...input)
+const abs = n => Math.abs(n)
+const triangular = n => (Math.abs(n) * (Math.abs(n)+1)) / 2
 
-  let lowestFuel = Infinity
-  for(let i = low; i <= high; i++) {
-    let fuel = input.reduce((a,b) => a + triangular(Math.abs(b - i)), 0)
-    if(fuel < lowestFuel) lowestFuel = fuel
-  }
-  return lowestFuel
+const range = (from, to, step=1) => {
+    return [...Array(Math.floor((to - from) / step) + 1)].map((_, i) => from + i * step)
 }
 
-const triangular = n => (n * (n+1)) / 2
-
-console.log('Part 1:', day7_1(), 'Part 2:', day7_2())
+console.log('Part 1:', day7(abs), 'Part 2:', day7(triangular))
