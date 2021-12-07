@@ -1,12 +1,6 @@
 const fs = require("fs");
 const instructions = fs.readFileSync('input', 'utf-8').split('\n')
 
-let = instructionsTest = ['turn on 0,0 through 0,0', 
-                          'toggle 0,0 through 9,9',
-                          'turn off 4,4 through 5,5',
-                          'turn off 4,4 through 5,5',
-                          'turn off 4,4 through 5,5',
-                          'turn off 4,4 through 5,5']
 let GRID_SIZE = 1000
 
 const day6 = (funcIn, funcOut) => {
