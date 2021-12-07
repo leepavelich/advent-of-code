@@ -6,7 +6,7 @@ const day5 = (input, func) => input.filter(func).length
 const niceString = line => {
   let vowels     = line.match(/[aieou]/g)
   let disallowed = line.match(/ab|cd|pq|xy/)
-  let doubles    = line.match(/([a-z])\1/)
+  let doubles    = line.match(/(.)\1/)
 
   return (vowels !== null && vowels.length > 2) && 
          (disallowed === null || disallowed.length === 0) &&
