@@ -1,36 +1,16 @@
 const fs = require("fs");
 const input = fs.readFileSync("input").toString('utf-8').split('\n')
-// console.log(input)
 
-const day5 = (input, func) => {
-  let total = 0
-  for (let line of input) {
-    if (func(line)) total++
-  }
-  return total
-}
-
-// let test = 'dvszwmarrgswjxmb'
+const day5 = (input, func) => input.filter(func).length
 
 const niceString = line => {
-  const vowels = ['a', 'e', 'i', 'o', 'u']
-  const disallowed = ['ab', 'cd', 'pq', 'xy']
-  let vowelCount = 0
-  let isNice = false
-  let letRepeat = false
+  let vowels = line.match(/[aieou]/g)
+  let disallowed = line.match(/ab|cd|pq|xy/)
+  let doubles    = line.match(/([a-z])\1/)
 
-  for (let pair of disallowed) {
-    if (line.includes(pair)) return false
-  }
-
-  for (let i = 0; i < line.length; i++) {
-    if (vowels.includes(line[i])) vowelCount++
-    if (line[i] === line[i+1]) letRepeat = true
-  }
-
-  if (vowelCount > 2 && letRepeat) isNice = true
-
-  return isNice
+  return (vowels !== null && vowels.length > 2) && 
+         (disallowed === null || disallowed.length === 0) &&
+         (doubles !== null && doubles.length > 0)
 }
 
 const newNiceString = line => {
