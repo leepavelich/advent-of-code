@@ -20,7 +20,7 @@ const day8_2 = () => {
     let digits = []
     let [inputs, output] = line.split('|')
     const input = inputs.trim().split(' ')
-    let zero = new Set()
+    let zero  = new Set()
     let one   = digitSet(input.find(x => x.length === 2))
     let two   = new Set()
     let three = new Set()
@@ -35,7 +35,7 @@ const day8_2 = () => {
     let sixDig  = input.filter(x => x.length === 6)
     for (let i = 0; i < fiveDig.length; i++) {
       fiveDig[i] = digitSet(fiveDig[i])
-      sixDig [i] = digitSet(sixDig[i])
+      sixDig[i]  = digitSet(sixDig[i])
     }
     for (let pattern of fiveDig) {
       if (intersection(pattern, seven).size == 3) {
