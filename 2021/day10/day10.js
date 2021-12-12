@@ -20,9 +20,9 @@ lines.forEach(line => {
         }
     }
   }
-  for (let i = stack.length - 1; i >= 0; i--) {
+  while (stack.length) {
     score *= 5
-    score += scores_2[stack[i]]
+    score += scores_2[stack.pop()]
   }
   scores.push(score)
 })
