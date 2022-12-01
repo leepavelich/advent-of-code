@@ -10,12 +10,10 @@ day = cwd[-1].lstrip('day')
 year = cwd[-2]
 
 r = requests.get(
-    'https://adventofcode.com/{year}/day/{day}/input'
-    .format(year=year, day=day), cookies=cookies
+    f'https://adventofcode.com/{year}/day/{day}/input', cookies=cookies
 )
 
-open('input'
-     .format(year=year, day=day), 'wb').write(r.content)
+open('input', 'wb').write(r.content)
 
-t = open('input-test'.format(year=year, day=day), 'x')
+t = open('input-test', 'x')
 t.close()
