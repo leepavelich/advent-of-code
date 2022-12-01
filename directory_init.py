@@ -21,7 +21,7 @@ for year in years:
             f.close()
             r = requests.get(
                 'https://adventofcode.com/{year}/day/{day}/input'.format(year=year, day=day), cookies=cookies)
-            open('{year}/day{day}/input'.format(year=year,
+            open('{year}/day{day}/input-test'.format(year=year,
                  day=day), 'wb').write(r.content)
             t = open('{year}/day{day}/input-test'.format(year=year, day=day), 'x')
             t.close()
