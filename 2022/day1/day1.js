@@ -1,23 +1,16 @@
 import { readFileSync } from "fs";
+
+const sum = (prev, curr) => prev + curr;
+
 const lines = readFileSync("input", "utf-8")
-  .split("\n")
-  .map((x) => Number(x));
+  .split("\n\n")
+  .map((e) =>
+    e
+      .split("\n")
+      .map((c) => Number(c))
+      .reduce(sum, 0)
+  )
+  .sort((a, b) => a - b);
 
-lines.push(0);
-
-let sums = [];
-let sum = 0;
-
-for (const line of lines) {
-  if (line == 0) {
-    sums.push(sum);
-    sum = 0;
-  } else {
-    sum += line;
-  }
-}
-
-sums = sums.sort((a, b) => b - a);
-
-console.log("Largest:", sums[0]);
-console.log("Three largest:", sums[0] + sums[1] + sums[2]);
+console.log("Largest:", lines.at(-1));
+console.log("Three largest:", lines.slice(-3).reduce(sum, 0));
