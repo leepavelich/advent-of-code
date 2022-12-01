@@ -11,10 +11,9 @@ days = range(1, 26)
 if not os.path.isdir(year):
     os.mkdir(year)
 for day in days:
-    if not os.path.isdir('{year}/day{day}'.format(year=year, day=day)):
-        os.mkdir('{year}/day{day}'.format(year=year, day=day))
-        f = open(
-            '{year}/day{day}/day{day}.js'.format(year=year, day=day), 'x')
+    if not os.path.isdir(f'{year}/day{day}'):
+        os.mkdir(f'{year}/day{day}')
+        f = open(f'{year}/day{day}/day{day}.js', 'x')
         f.write("import { readFileSync } from \"fs\";\n")
         f.write("const lines = readFileSync('input-test', 'utf-8').split('\\n')")
         f.close()
