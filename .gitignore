@@ -1,3 +1,5 @@
 2015/day4/node_modules/
 session
 node_modules/
+**/input
+**/input-test
