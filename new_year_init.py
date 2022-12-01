@@ -16,5 +16,5 @@ for day in days:
         f = open(
             '{year}/day{day}/day{day}.js'.format(year=year, day=day), 'x')
         f.write("import { readFileSync } from \"fs\";\n")
-        f.write("const lines = fs.readFileSync('input', 'utf-8').split('\\n')")
+        f.write("const lines = readFileSync('input', 'utf-8').split('\\n')")
         f.close()
