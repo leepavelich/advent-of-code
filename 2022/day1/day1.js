@@ -1,2 +1,2 @@
-const fs = require("fs");
-const input = fs.readFileSync("input", 'utf-8')
+import { readFileSync } from "fs";
+const input = readFileSync("input", 'utf-8')
