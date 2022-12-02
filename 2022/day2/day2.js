@@ -4,7 +4,7 @@ const lines = readFileSync("input", "utf-8")
   .split("\n")
   .map((l) => l.split(" "))
   .map((l) =>
-    l.map((c) => c.charCodeAt()).map((v) => (v < 80 ? v - 64 : v - 87))
+    l.map((c) => c.charCodeAt()).map((v) => (v < 80 ? v - 65 : v - 88))
   );
 
 const transpose = (matrix) => {
@@ -20,7 +20,7 @@ const payoffs = [
 console.log(
   "First sum:",
   lines.reduce(
-    (prev, [theirs, mine]) => prev + mine + payoffs[mine - 1][theirs - 1],
+    (prev, [theirs, mine]) => prev + mine + payoffs[mine][theirs] + 1,
     0
   )
 );
@@ -31,14 +31,12 @@ const outcomes = [0, 3, 6];
 
 console.log(
   "Second sum:",
-  lines
-    .map(([first, sec]) => [first - 1, sec - 1])
-    .reduce(
-      (prev, [theirs, outcome]) =>
-        prev +
-        outcomes[outcome] +
-        transposed[theirs].indexOf(outcomes[outcome]) +
-        1,
-      0
-    )
+  lines.reduce(
+    (prev, [theirs, outcome]) =>
+      prev +
+      outcomes[outcome] +
+      transposed[theirs].indexOf(outcomes[outcome]) +
+      1,
+    0
+  )
 );
