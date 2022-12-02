@@ -2,7 +2,10 @@ import { readFileSync } from "fs";
 const lines = readFileSync("input", "utf-8")
   .trim()
   .split("\n")
-  .map((l) => l.split(" "));
+  .map((l) => l.split(" "))
+  .map((l) =>
+    l.map((c) => c.charCodeAt()).map((v) => (v < 80 ? v - 64 : v - 87))
+  );
 
 const transpose = (matrix) => {
   return matrix[0].map((col, i) => matrix.map((row) => row[i]));
@@ -14,41 +17,28 @@ const payoffs = [
   [0, 6, 3],
 ];
 
+console.log(
+  "First sum:",
+  lines.reduce(
+    (prev, [theirs, mine]) => prev + mine + payoffs[mine - 1][theirs - 1],
+    0
+  )
+);
+
 const transposed = transpose(payoffs);
 
-const moves = {
-  A: 1,
-  B: 2,
-  C: 3,
-  X: 1,
-  Y: 2,
-  Z: 3,
-};
+const outcomes = [0, 3, 6];
 
-let sum = 0;
-
-for (let line of lines) {
-  let [theirs, mine] = line;
-  sum += moves[mine] + payoffs[moves[mine] - 1][moves[theirs] - 1];
-}
-
-console.log("First sum:", sum);
-
-sum = 0;
-
-const games = {
-  A: 0,
-  B: 3,
-  C: 6,
-  X: 0,
-  Y: 3,
-  Z: 6,
-};
-
-for (let line of lines) {
-  let [theirs, condition] = line;
-  sum +=
-    games[condition] +
-    transposed[moves[theirs] - 1].indexOf(games[condition]) +
-    1;
-}
+console.log(
+  "Second sum:",
+  lines
+    .map(([first, sec]) => [first - 1, sec - 1])
+    .reduce(
+      (prev, [theirs, outcome]) =>
+        prev +
+        outcomes[outcome] +
+        transposed[theirs].indexOf(outcomes[outcome]) +
+        1,
+      0
+    )
+);
