@@ -13,11 +13,11 @@ const payoffs = [
   [6, 0, 3],
 ];
 
-const res = payoffs[1];
+const results = payoffs[1];
 
-const first = (prev, [theirs, mine]) => prev + mine + payoffs[theirs][mine] + 1;
+const first = (prev, [opp, player]) => prev + player + payoffs[opp][player] + 1;
 const second = (prev, [theirs, outcome]) =>
-  prev + res[outcome] + payoffs[theirs].indexOf(res[outcome]) + 1;
+  prev + results[outcome] + payoffs[theirs].indexOf(results[outcome]) + 1;
 
 console.log("First sum:", lines.reduce(first, 0));
 console.log("Second sum:", lines.reduce(second, 0));
