@@ -17,26 +17,11 @@ const payoffs = [
   [0, 6, 3],
 ];
 
-console.log(
-  "First sum:",
-  lines.reduce(
-    (prev, [theirs, mine]) => prev + mine + payoffs[mine][theirs] + 1,
-    0
-  )
-);
+const res = [0, 3, 6];
 
-const transposed = transpose(payoffs);
+const first = (prev, [theirs, mine]) => prev + mine + payoffs[mine][theirs] + 1;
+const second = (prev, [theirs, outcome]) =>
+  prev + res[outcome] + transpose(payoffs)[theirs].indexOf(res[outcome]) + 1;
 
-const outcomes = [0, 3, 6];
-
-console.log(
-  "Second sum:",
-  lines.reduce(
-    (prev, [theirs, outcome]) =>
-      prev +
-      outcomes[outcome] +
-      transposed[theirs].indexOf(outcomes[outcome]) +
-      1,
-    0
-  )
-);
+console.log("First sum:", lines.reduce(first, 0));
+console.log("Second sum:", lines.reduce(second, 0));
