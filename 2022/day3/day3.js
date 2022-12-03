@@ -8,9 +8,7 @@ const priority = (c) => {
 const uniqueChars = (chars) =>
   chars.filter((c, index) => chars.indexOf(c) === index);
 
-const removeDuplicates = (string) => {
-  return uniqueChars(string.split("")).join("");
-};
+const removeDuplicates = (string) => uniqueChars(string.split("")).join("");
 
 const lines = readFileSync("input", "utf-8").split("\n");
 
