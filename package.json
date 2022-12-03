@@ -20,5 +20,8 @@
   "homepage": "https://github.com/leepavelich/advent-of-code#readme",
   "devDependencies": {
     "standard": "^16.0.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
