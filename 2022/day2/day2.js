@@ -2,9 +2,11 @@ import { readFileSync } from "fs";
 const lines = readFileSync("input", "utf-8")
   .trim()
   .split("\n")
-  .map((l) => l.split(" "))
-  .map((l) =>
-    l.map((c) => c.charCodeAt()).map((v) => (v < 80 ? v - 65 : v - 88))
+  .map((line) =>
+    line
+      .split(" ")
+      .map((c) => c.charCodeAt())
+      .map((v) => (v < 80 ? v - 65 : v - 88))
   );
 
 const payoffs = [
@@ -12,7 +14,6 @@ const payoffs = [
   [0, 3, 6],
   [6, 0, 3],
 ];
-
 const results = payoffs[1];
 
 const first = (prev, [opp, player]) => prev + player + payoffs[opp][player] + 1;
