@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
 import _ from "lodash";
 
-const lines = readFileSync("input", "utf-8").trim().split("\n");
+const lines = readFileSync(process.argv.at(-1), "utf-8").trim().split("\n");
 
 const priority = (c) => {
   const v = c.charCodeAt();
