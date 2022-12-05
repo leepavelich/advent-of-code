@@ -1,19 +1,11 @@
 import { readFileSync } from "fs";
-import _ from "lodash";
-
 const lines = readFileSync(process.argv.at(-1), "utf-8")
   .trim()
   .split("\n")
-  .map((l) =>
-    l
-      .split(",")
-      .map((a) => a.split("-").map((x) => Number(x)))
-      .map(([f, s]) => _.range(f, s + 1))
-  );
+  .map((l) => l.split(",").map((a) => a.split("-").map((x) => Number(x))));
 
-const q1 = (A, B) =>
-  _.difference(A, B).length === 0 || _.difference(B, A).length === 0;
-const q2 = (A, B) => _.intersection(A, B).length > 0;
+const q1 = (a, b, x, y) => (a <= x && b >= y) || (a >= x && b <= y);
+const q2 = (a, b, x, y) => a <= y && b >= x;
 
-console.log("Problem 1:", lines.filter(([A, B]) => q1(A, B)).length);
-console.log("Problem 2:", lines.filter(([A, B]) => q2(A, B)).length);
+console.log("P1:", lines.filter(([[a, b], [x, y]]) => q1(a, b, x, y)).length);
+console.log("P2:", lines.filter(([[a, b], [x, y]]) => q2(a, b, x, y)).length);
