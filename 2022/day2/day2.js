@@ -1,12 +1,15 @@
 import { read } from "../../utils/js/io.js";
 import "../../utils/js/array.js";
+import { split } from "lodash";
 
-const lines = read().map((line) =>
-  line
-    .split(" ")
-    .map((c) => c.charCodeAt())
-    .map((v) => (v < 80 ? v - 65 : v - 88))
-);
+const lines = read()
+  .split("\n")
+  .map((line) =>
+    line
+      .split(" ")
+      .map((c) => c.charCodeAt())
+      .map((v) => (v < 80 ? v - 65 : v - 88))
+  );
 
 const payoffs = [
   [3, 6, 0],
