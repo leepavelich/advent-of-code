@@ -10,6 +10,11 @@ Array.prototype.toNum = function (f) {
 };
 
 Array.prototype.largest = function (n) {
-  if (!n) return this.sort((a, b) => a - b).slice(-1)[0];
-  return this.sort((a, b) => a - b).slice(-n);
+  if (!n) return this.sort((a, b) => b - a)[0];
+  return this.sort((a, b) => b - a).slice(0, n);
+};
+
+Array.prototype.smallest = function (n) {
+  if (!n) return this.sort((a, b) => a - b)[0];
+  return this.sort((a, b) => a - b).slice(0, n);
 };
