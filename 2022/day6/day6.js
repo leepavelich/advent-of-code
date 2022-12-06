@@ -7,4 +7,4 @@ const packet = (n) =>
   input.findIndex((e, i) => input.slice(i, i + n).uniq().length === n) + n;
 
 console.log("P1:", packet(4));
-console.log("P1:", packet(14));
+console.log("P2:", packet(14));
