@@ -1,5 +1,13 @@
 import _ from "lodash";
 
+Array.new = function (n, v) {
+  return new Array(n).fill(v);
+};
+
+Array.range = function (start, end) {
+  return _.range(start, end);
+};
+
 const sum = (d) => (d ? (acc, s) => acc + d(s) : (acc, s) => acc + s);
 Array.prototype.sum = function (f) {
   return _.reduce(this, sum(f), 0);
