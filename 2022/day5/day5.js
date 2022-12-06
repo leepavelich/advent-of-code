@@ -1,6 +1,7 @@
-import { readFileSync } from "fs";
-const lines = readFileSync(process.argv.at(-1), "utf-8").split("\n\n");
+import { read } from "../../utils/js/io.js";
+import "../../utils/js/array.js";
 
+const lines = read().split("\n\n");
 let stacks = lines[0].split("\n");
 let columnNum = stacks.pop().trim().split(/\s+/).length;
 let crates = stacks.reverse();
@@ -8,7 +9,7 @@ let moves = lines[1]
   .trim()
   .split("\n")
   .map((m) => m.split(" "))
-  .map(([m, i1, f, i2, t, i3]) => [i1, i2, i3].map((x) => Number(x)));
+  .map(([m, i1, f, i2, t, i3]) => [i1, i2, i3].toNum());
 
 const columns = [];
 for (let row of crates) {

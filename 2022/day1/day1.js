@@ -1,16 +1,9 @@
-import { readFileSync } from "fs";
+import { read } from "../../utils/js/io.js";
+import "../../utils/js/array.js";
 
-const sum = (prev, curr) => prev + curr;
-
-const lines = readFileSync("input", "utf-8")
+const lines = read()
   .split("\n\n")
-  .map((elf) =>
-    elf
-      .split("\n")
-      .map((cal) => Number(cal))
-      .reduce(sum, 0)
-  )
-  .sort((a, b) => a - b);
+  .map((e) => e.split("\n").toNum().sum());
 
-console.log("Largest:", lines.at(-1));
-console.log("Three largest:", lines.slice(-3).reduce(sum, 0));
+console.log("P1:", lines.largest());
+console.log("P2:", lines.largest(3).sum());

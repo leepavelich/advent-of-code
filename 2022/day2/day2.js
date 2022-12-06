@@ -1,8 +1,8 @@
 import { read } from "../../utils/js/io.js";
 import "../../utils/js/array.js";
-import { split } from "lodash";
 
 const lines = read()
+  .trim()
   .split("\n")
   .map((line) =>
     line
