@@ -1,2 +1,4 @@
-import { readFileSync } from "fs";
-const lines = readFileSync('input-test', 'utf-8').split('\n')
+import { read } from "../../utils/js/io.js";
+import "../../utils/js/array.js";
+
+const lines = read().split("\n");
