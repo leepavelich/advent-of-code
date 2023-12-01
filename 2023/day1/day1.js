@@ -1,39 +1,19 @@
 import { readFileSync } from "fs";
 const lines = readFileSync("input", "utf-8").trim().split("\n");
 
-const numDict = {
-  one: "1",
-  two: "2",
-  three: "3",
-  four: "4",
-  five: "5",
-  six: "6",
-  seven: "7",
-  eight: "8",
-  nine: "9",
-};
+const nums = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 
 let [q1, q2] = [0, 0];
 for (const line of lines) {
-  let q1Digits = [];
-  let q2Digits = [];
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (!isNaN(Number(c))) {
-      q1Digits.push(c);
-      q2Digits.push(c);
-      continue;
-    }
+  let [q1Digits, q2Digits] = [[], []];
 
-    for (const word in numDict) {
-      if (line.slice(i).startsWith(word)) {
-        q2Digits.push(numDict[word]);
-        i++;
-      }
-    }
-  }
-  q1 += 10 * Number(q1Digits[0]) + Number(q1Digits.at(-1));
-  q2 += 10 * Number(q2Digits[0]) + Number(q2Digits.at(-1));
+  [...line].forEach((c, i) => {
+    if (Number(c)) q1Digits.push(Number(c)), q2Digits.push(Number(c));
+    nums.forEach((w, idx) => line.slice(i).startsWith(w) && q2Digits.push(idx));
+  });
+
+  q1 += 10 * q1Digits[0] + q1Digits.at(-1);
+  q2 += 10 * q2Digits[0] + q2Digits.at(-1);
 }
 
 console.log("q1:", q1);
