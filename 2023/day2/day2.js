@@ -1,50 +1,19 @@
 import { readFileSync } from "fs";
 const lines = readFileSync("input", "utf-8").trim().split("\n");
 
-const maxes = { red: 12, green: 13, blue: 14 };
+const q1Max = { red: 12, green: 13, blue: 14 };
 
-let q1 = 0;
+const [q1, q2] = lines.reduce(
+  ([acc1, acc2], line) => {
+    const [, id, reveals] = line.match(/Game (\d+): (.+)/);
+    const pairs = [...reveals.matchAll(/(\d+) (\w+)/g)].map(match => [Number(match[1]), match[2]]);
+    const maxes = pairs.reduce((max, [num, color]) => ({ ...max, [color]: Math.max(max[color] || 0, num) }), {});
+    const prod = maxes.red * maxes.blue * maxes.green;
 
-for (const line of lines) {
-  const [game, reveals] = line.split(":");
-  const id = game.split(" ")[1];
-
-  const allRevealsValid = reveals.split(";").every(reveal =>
-    reveal.split(",").every(pair => {
-      const [num, col] = pair.trim().split(" ");
-      return maxes[col] >= Number(num);
-    })
-  );
-
-  if (allRevealsValid) {
-    q1 += Number(id);
-  }
-}
-
-let q2 = 0;
-
-for (const line of lines) {
-  const [_, reveals] = line.split(":");
-  const maxValues = {};
-
-  reveals
-    .split(";")
-    .map(r =>
-      r
-        .trim()
-        .split(",")
-        .map(r => r.trim().split(" "))
-    )
-    .forEach(group => {
-      group.forEach(([num, color]) => {
-        if (!maxValues[color] || Number(num) > maxValues[color]) {
-          maxValues[color] = Number(num);
-        }
-      });
-    });
-
-  q2 += maxValues.red * maxValues.blue * maxValues.green;
-}
+    return [acc1 + (pairs.every(([num, col]) => q1Max[col] >= num) ? Number(id) : 0), acc2 + prod];
+  },
+  [0, 0]
+);
 
 console.log("q1:", q1);
 console.log("q2:", q2);
